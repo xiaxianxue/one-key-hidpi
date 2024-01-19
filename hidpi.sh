@@ -1,13 +1,13 @@
 #!/bin/bash
 
 cat <<EEF
-  _    _   _____   _____    _____    _____ 
+  _    _   _____   _____    _____    _____
  | |  | | |_   _| |  __ \  |  __ \  |_   _|
- | |__| |   | |   | |  | | | |__) |   | |  
- |  __  |   | |   | |  | | |  ___/    | |  
- | |  | |  _| |_  | |__| | | |       _| |_ 
+ | |__| |   | |   | |  | | | |__) |   | |
+ |  __  |   | |   | |  | | |  ___/    | |
+ | |  | |  _| |_  | |__| | | |       _| |_
  |_|  |_| |_____| |_____/  |_|      |_____|
-                                           
+
 ============================================
 EEF
 
@@ -45,7 +45,8 @@ langChooseResOp1="(1) 1920x1080 Display"
 langChooseResOp2="(2) 1920x1080 Display (use 1424x802, fix underscaled after sleep)"
 langChooseResOp3="(3) 1920x1200 Display"
 langChooseResOp4="(4) 2560x1440 Display"
-langChooseResOp5="(5) 3000x2000 Display"
+langChooseResOp5="(5) 2560x1600 Display"
+langChooseResOp6="(6) 3000x2000 Display"
 langChooseResOpCustom="(6) Manual input resolution"
 
 langNoMonitFound="No monitors were found. Exiting..."
@@ -81,7 +82,8 @@ if [[ "${systemLanguage}" == "zh_CN" ]]; then
     langChooseResOp2="(2) 1920x1080 显示屏 (使用 1424x802 分辨率，修复睡眠唤醒后的屏幕缩小问题)"
     langChooseResOp3="(3) 1920x1200 显示屏"
     langChooseResOp4="(4) 2560x1440 显示屏"
-    langChooseResOp5="(5) 3000x2000 显示屏"
+    langChooseResOp5="(5) 2560x1600 显示屏"
+    langChooseResOp6="(6) 3000x2000 显示屏"
     langChooseResOpCustom="(6) 手动输入分辨率"
 
     langNoMonitFound="没有找到监视器。 退出..."
@@ -117,7 +119,8 @@ elif [[ "${systemLanguage}" == "uk_UA" ]]; then
     langChooseResOp2="(2) 1920x1080 монітор (використовувати 1424x802, виправлення заниженої роздільної здатності після сну)"
     langChooseResOp3="(3) 1920x1200 монітор"
     langChooseResOp4="(4) 2560x1440 монітор"
-    langChooseResOp5="(5) 3000x2000 монітор"
+    langChooseResOp5="(5) 2560x1600 монітор"
+    langChooseResOp6="(6) 3000x2000 монітор"
     langChooseResOpCustom="(6) Ввести роздільну здатність вручну"
 
     langNoMonitFound="Моніторів не знайдено. Завершую роботу..."
@@ -308,7 +311,7 @@ function init() {
     mbicon=${sysOverrides}"\/DisplayVendorID\-610\/DisplayProductID\-a028\-9d9da0\.tiff"
     lgicon=${sysOverrides}"\/DisplayVendorID\-1e6d\/DisplayProductID\-5b11\.tiff"
     proxdricon=${Overrides}"\/DisplayVendorID\-610\/DisplayProductID\-ae2f\_Landscape\.tiff"
-    
+
     if [[ $is_applesilicon == true ]]; then
         get_vidpid_applesilicon
     else
@@ -608,6 +611,7 @@ CCC
     echo ${langChooseResOp3}
     echo ${langChooseResOp4}
     echo ${langChooseResOp5}
+    echo ${langChooseResOp6}
     echo ${langChooseResOpCustom}
     echo ""
 
@@ -638,12 +642,18 @@ CCC
         create_res_4 2048x1152 1920x1080 1680x945 1440x810 1280x720 1024x576 960x540 840x472 800x450 640x360
         ;;
     5)
+        create_res_1 2560x1600 2048x1280 1920x1200 1760x1100 1680x1050 1360x850 1280x800
+        create_res_2 1360x850 1280x800 1024x576 960x600 640x360
+        create_res_3 960x600 840x472 800x450 720x405 640x360 576x324 512x288 420x234 400x225 320x180
+        create_res_4 2560x1600 2048x1280 1920x1200 1760x1100 1680x1050 1440x900 1280x800 1024x576 960x540 840x472 800x450 640x360
+        ;;
+    6)
         create_res_1 3000x2000 2880x1920 2250x1500 1920x1280 1680x1050 1440x900 1280x800 1024x640
         create_res_2 1280x800 1280x720 960x600 960x540 640x360
         create_res_3 840x472 800x450 720x405 640x360 576x324 512x288 420x234 400x225 320x180
         create_res_4 1920x1280 1680x1050 1440x900 1280x800 1024x640 960x540 840x472 800x450 640x360
         ;;
-    6)
+    7)
         custom_res
         create_res_2 1360x765 1280x800 1280x720 960x600 960x540 640x360
         create_res_3 840x472 800x450 720x405 640x360 576x324 512x288 420x234 400x225 320x180
